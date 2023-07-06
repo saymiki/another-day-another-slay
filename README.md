@@ -46,5 +46,8 @@ THEN the saved events persist
 
 <STRONG> REFERENCES </strong>
 
-* Utilized stack overflow
-* Partnered with a friend to implement various functions in the script.js file
+* This entire project was built using code provided by Northwestern University's Full-stack Development Coding Bootcamp TAs from the following repository:
+
+https://nu.bootcampcontent.com/NU-Coding-Bootcamp/NU-VIRT-FSF-PT-01-2023-U-LOLC/-/tree/main/00-homework-solutions/06-Main
+
+With their express permission, I used the code provided as a template which I then modified, primarily through the renaming of elements, addition/modification of comments, and rearrangement of variables.
