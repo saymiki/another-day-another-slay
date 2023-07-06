@@ -12,7 +12,6 @@ var five =$('#hour17')
 var six =$('#hour18')
 var textarea = $(".form-control")
 
-//array variables
 var eight =$('#hr8')
 var nine =$('#hr9')
 var ten =$('#hr10')
@@ -25,23 +24,82 @@ var four =$('#hr16')
 var five =$('#hr17')
 var six =$('#hr18')
 
-$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
-});
+var timeArray = [eight, nine, ten, eleven, twelve, one, two, three, four, five, six]
+
+var text;
+var hourSpan;
+var currentHour = moment().hour()
+
+// Display current day
+// create variable referencing the place the date will display in html
+var currentDay = $('#currentDay')
+//create function for moment that formats the date and displays it on the page
+function displayCurrentDay () {
+    var timeInterval = setInterval(function () {
+    var now = moment().format('dddd, MMMM Do, YYYY[at] hh:mm:ss A')
+    currentDay.text(now)
+      })
+} 
+
+//call the function so it shows up on the page
+displayCurrentDay ()
+
+
+function colors() {
+    for (let i=0; i < timeArray.length; i++) {
+        if (currentHour > timeArray[i].attr("data-time")){
+            timeArray[i].attr("class", "past form-control col-10 text");
+
+        } else if (currentHour == timeArray[i].attr("data-time")) {
+            timeArray[i].attr("class", "present form-control col-10 text");
+
+        } else {
+
+            timeArray[i].attr("class", "future form-control col-10 text");
+        }
+        console.log (timeArray[i].attr("data-time"))
+    }
+}
+      
+// WHEN I click the save button for that timeblock
+//write function for saving input to local storage
+function saveText (event){
+    event.preventDefault()
+    {
+        var text = $(this).siblings(".text").val()
+        var time = $(this).parent().attr("id");
+        console.log(text)
+        console.log(time)
+        // THEN the text for that event is saved in local storage
+            localStorage.setItem(time, text)
+        }
+    }
+    //add event listener for buttons that save to local storage
+    saveBtn.on('click', saveText)
+    
+    // refresh function to save any text that was input
+    function refresh () {
+        console.log("Current Hour " + currentHour);
+        //get items from local storage
+        $("#hour9 .text").val(localStorage.getItem("hour9"));
+        $("#hour10 .text").val(localStorage.getItem("hour10"));
+        $("#hour11 .text").val(localStorage.getItem("hour11"));
+        $("#hour12 .text").val(localStorage.getItem("hour12"));
+        $("#hour13 .text").val(localStorage.getItem("hour13"));
+        $("#hour14 .text").val(localStorage.getItem("hour14"));
+        $("#hour15 .text").val(localStorage.getItem("hour15"));
+        $("#hour16 .text").val(localStorage.getItem("hour16"));
+        $("#hour17 .text").val(localStorage.getItem("hour17"));
+        
+    } 
+    //add recall from local storage
+$(document).ready (function (){
+refresh()
+colors ()
+} )
+
+// Button for clear the day
+$("#clearDay").on("click", function(){
+    localStorage.clear();
+    refresh()
+  }) 
