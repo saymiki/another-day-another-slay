@@ -1,6 +1,30 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+var saveBtn = $('.saveBtn')
+var eightId =$('#hour8')
+var nineId =$('#hour9')
+var tenId =$('#hour10')
+var eleven =$('#hour11')
+var twelve =$('#hour12')
+var one =$('#hour13')
+var two =$('#hour14')
+var three =$('#hour15')
+var four =$('#hour16')
+var five =$('#hour17')
+var six =$('#hour18')
+var textarea = $(".form-control")
+
+//array variables
+var eight =$('#hr8')
+var nine =$('#hr9')
+var ten =$('#hr10')
+var eleven =$('#hr11')
+var twelve =$('#hr12')
+var one =$('#hr13')
+var two =$('#hr14')
+var three =$('#hr15')
+var four =$('#hr16')
+var five =$('#hr17')
+var six =$('#hr18')
+
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
