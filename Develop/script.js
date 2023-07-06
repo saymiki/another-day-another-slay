@@ -40,6 +40,27 @@ function displayCurrentDay () {
     currentDay.text(now)
       })
 } 
+
+//call the function so it shows up on the page
+displayCurrentDay ()
+
+
+function colors() {
+    for (let i=0; i < timeArray.length; i++) {
+        if (currentHour > timeArray[i].attr("data-time")){
+            timeArray[i].attr("class", "past form-control col-10 text");
+
+        } else if (currentHour == timeArray[i].attr("data-time")) {
+            timeArray[i].attr("class", "present form-control col-10 text");
+
+        } else {
+
+            timeArray[i].attr("class", "future form-control col-10 text");
+        }
+        console.log (timeArray[i].attr("data-time"))
+    }
+}
+
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
